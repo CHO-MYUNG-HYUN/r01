@@ -28,17 +28,15 @@ public class Contact {
 	}
 	
 	public void printContact() {
-		System.out.println("이름\t: " + getName());
-		System.out.println("전화번호\t: " + getPhoneNumber());
-		System.out.println("이메일\t: " + getEmail());
-		System.out.println("주소\t: " + getAddress());
-		System.out.println("생일\t: " + getBirthday());
-		System.out.println("그룹\t: " + getGroup());
+		System.out.println("이름\t: " + name);
+		System.out.println("전화번호\t: " + phoneNumber);
+		System.out.println("이메일\t: " + email);
+		System.out.println("주소\t: " + address);
+		System.out.println("생일\t: " + birthday);
+		System.out.println("그룹\t: " + group);
 	}
 	
-	public void modifyContact() {
-		
-	}
+//	public void modifyContact() {}
 
 	//getter
 	public String getName() {
