@@ -7,6 +7,8 @@ public class ContactMain {
 	public static void main(String[] args) {
 
 		Scanner scanner = new Scanner(System.in);
+		String modify = null;
+		String tmp = null;
 		Contact contact = new Contact();
 		
 		System.out.print("이름\t>>");
@@ -22,11 +24,51 @@ public class ContactMain {
 		System.out.print("그룹\t>>");
 		contact.setGroup(scanner.next());
 		
-		System.out.println("----------------------");
+		System.out.println("####################");
 		
-		contact.printData();
+		contact.printContact();
 		
-
+		System.out.println("####################");
+		
+		System.out.print("수정할 항목 >>");
+		modify = scanner.next();
+		System.out.print("수정할 " + modify + " >>");
+		tmp = scanner.next();
+		switch(modify) {
+		case"이름":
+			contact.setName(tmp);
+			System.out.println(modify + " 변경 완료" );
+			break;
+		case"전화번호":
+			contact.setPhoneNumber(tmp);
+			System.out.println(modify + " 변경 완료" );
+			break;
+		case"이메일":
+			contact.setEmail(tmp);
+			System.out.println(modify + " 변경 완료" );
+			break;
+		case"주소":
+			contact.setAddress(tmp);
+			System.out.println(modify + " 변경 완료" );
+			break;
+		case"생일":
+			contact.setBirthday(tmp);
+			System.out.println(modify + " 변경 완료" );
+			break;
+		case"그룹":
+			contact.setGroup(tmp);
+			System.out.println(modify + " 변경 완료" );
+			break;
+		}
+		
+		System.out.println("####################");
+		
+		contact.printContact();
+		
+		scanner.close();
 	}
+	
+	
+	
 
 }

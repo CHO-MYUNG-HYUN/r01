@@ -27,7 +27,7 @@ public class Contact {
 		return contact;
 	}
 	
-	public void printData() {
+	public void printContact() {
 		System.out.println("이름\t: " + getName());
 		System.out.println("전화번호\t: " + getPhoneNumber());
 		System.out.println("이메일\t: " + getEmail());
