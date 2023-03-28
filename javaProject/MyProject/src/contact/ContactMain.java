@@ -9,7 +9,7 @@ public class ContactMain {
 		Scanner scanner = new Scanner(System.in);
 		String modify = null;
 		String tmp = null;
-		Contact contact = new Contact();
+		Contact contact = Contact.getContact();
 
 		System.out.print("이름\t>>");
 		contact.setName(scanner.nextLine());
