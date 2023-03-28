@@ -9,7 +9,7 @@ public class Contact {
 	private String birthday;
 	private String group;
 	
-	Contact(){
+	private Contact(){
 		name = "미등록";
 		phoneNumber = "미등록";
 		email = "미등록";
