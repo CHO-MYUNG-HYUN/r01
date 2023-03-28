@@ -10,65 +10,62 @@ public class ContactMain {
 		String modify = null;
 		String tmp = null;
 		Contact contact = new Contact();
-		
+
 		System.out.print("이름\t>>");
-		contact.setName(scanner.next());
+		contact.setName(scanner.nextLine());
 		System.out.print("전화번호\t>>");
-		contact.setPhoneNumber(scanner.next());
+		contact.setPhoneNumber(scanner.nextLine());
 		System.out.print("이메일\t>>");
-		contact.setEmail(scanner.next());
+		contact.setEmail(scanner.nextLine());
 		System.out.print("주소\t>>");
-		contact.setAddress(scanner.next());
+		contact.setAddress(scanner.nextLine());
 		System.out.print("생일\t>>");
-		contact.setBirthday(scanner.next());
+		contact.setBirthday(scanner.nextLine());
 		System.out.print("그룹\t>>");
-		contact.setGroup(scanner.next());
-		
+		contact.setGroup(scanner.nextLine());
+
 		System.out.println("####################");
-		
+
 		contact.printContact();
-		
+
 		System.out.println("####################");
-		
+
 		System.out.print("수정할 항목 >>");
 		modify = scanner.next();
 		System.out.print("수정할 " + modify + " >>");
 		tmp = scanner.next();
-		switch(modify) {
-		case"이름":
+		switch (modify) {
+		case "이름":
 			contact.setName(tmp);
-			System.out.println(modify + " 변경 완료" );
+			System.out.println(modify + " 변경 완료");
 			break;
-		case"전화번호":
+		case "전화번호":
 			contact.setPhoneNumber(tmp);
-			System.out.println(modify + " 변경 완료" );
+			System.out.println(modify + " 변경 완료");
 			break;
-		case"이메일":
+		case "이메일":
 			contact.setEmail(tmp);
-			System.out.println(modify + " 변경 완료" );
+			System.out.println(modify + " 변경 완료");
 			break;
-		case"주소":
+		case "주소":
 			contact.setAddress(tmp);
-			System.out.println(modify + " 변경 완료" );
+			System.out.println(modify + " 변경 완료");
 			break;
-		case"생일":
+		case "생일":
 			contact.setBirthday(tmp);
-			System.out.println(modify + " 변경 완료" );
+			System.out.println(modify + " 변경 완료");
 			break;
-		case"그룹":
+		case "그룹":
 			contact.setGroup(tmp);
-			System.out.println(modify + " 변경 완료" );
+			System.out.println(modify + " 변경 완료");
 			break;
 		}
-		
+
 		System.out.println("####################");
-		
+
 		contact.printContact();
-		
+
 		scanner.close();
 	}
-	
-	
-	
 
 }

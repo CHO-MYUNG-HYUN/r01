@@ -35,6 +35,10 @@ public class Contact {
 		System.out.println("생일\t: " + getBirthday());
 		System.out.println("그룹\t: " + getGroup());
 	}
+	
+	public void modifyContact() {
+		
+	}
 
 	//getter
 	public String getName() {
