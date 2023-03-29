@@ -1,6 +1,6 @@
 package Array;
 
-public class ArrayMain {
+public class StudentMain {
 
 	public static void main(String[] args) {
 
