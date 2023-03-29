@@ -24,7 +24,7 @@ public class Member {
 		this.phone = new SmartPhone();
 	}
 	
-	void showData() {
+	public void showData() {
 		System.out.println("이름 : " + name);
 		System.out.println("이메일 : " + email);
 		System.out.println("나이 : " + age);
