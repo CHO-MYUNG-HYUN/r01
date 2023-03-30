@@ -14,6 +14,8 @@ public class Member {
 		int year = in.nextInt();
 		
 		vaccin2(year);
+		
+		in.close();
 	}
 
 	static void vaccin(int year) {
