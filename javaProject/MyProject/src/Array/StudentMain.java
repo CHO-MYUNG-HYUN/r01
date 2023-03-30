@@ -17,7 +17,8 @@ public class StudentMain {
 		student[9] = new Student("차", 99 ,100 ,100);
 		
 		for(int i = 0; i<student.length; i++) {
-			System.out.println(student[i].getName() + "의 평균 점수 : " + student[i].getAvg());
+//			System.out.println(student[i].getName() + "의 평균 점수 : " + student[i].avg());
+			System.out.println(student[i].result());
 		}
 	}
 

@@ -15,10 +15,25 @@ public class Student {
 		this.math = math;
 	}
 	
-	public double getAvg() {
-		return (lang+eng+math)/3.0;
+	private int sum() {
+		return lang+eng+math;
 	}
 	
+	private double avg() {
+		return sum()/3.0;
+	}
+	
+	public String result() {
+		return name+"\t"+lang+"\t"+eng+"\t"+math+"\t"+sum()+"\t"+avg();
+	}
+	
+	
+	@Override
+	public String toString() {
+//		return "Student [name=" + name + ", lang=" + lang + ", eng=" + eng + ", math=" + math + "]";
+		return result();
+	}
+
 	//getter
 	public String getName() {
 		return name;
@@ -32,6 +47,7 @@ public class Student {
 	public int getMath() {
 		return math;
 	}
+	
 	//setter
 	public void setName(String name) {
 		this.name = name;
