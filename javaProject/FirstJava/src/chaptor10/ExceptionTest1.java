@@ -20,7 +20,7 @@ public class ExceptionTest1 {
 		}catch (ArithmeticException e) {
 			System.out.println("0으로 나누기는 불가합니다.");
 			System.out.println("프로그램을 종료합니다.");
-			return; //main메소드 종료->프로그램 종료
+//			return; //main메소드 종료->프로그램 종료
 		}
 		
 //		System.out.println(num1/num2);

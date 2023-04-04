@@ -1,4 +1,4 @@
-package api;
+package chaptor10;
 
 import java.util.Scanner;
 
