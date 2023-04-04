@@ -1,0 +1,19 @@
+package chaptor10;
+
+public class BadInputException extends Exception{
+
+	public BadInputException(String message) {
+		super(message);
+		// TODO Auto-generated constructor stub
+	}
+
+	public BadInputException() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+
+	
+}
