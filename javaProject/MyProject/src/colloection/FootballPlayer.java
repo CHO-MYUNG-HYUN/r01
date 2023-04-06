@@ -38,11 +38,9 @@ public class FootballPlayer {
 		return "FootballPlayer [name=" + name + ", number=" + number + ", team=" + team + ", age=" + age + "]";
 	}
 
-	
-	
 	public static void main(String[] args) {
 
-		//List 인스턴스 저장 및 출력
+		// List 인스턴스 저장 및 출력
 		List<FootballPlayer> list = null;
 		list = new LinkedList<FootballPlayer>();
 
@@ -58,7 +56,7 @@ public class FootballPlayer {
 
 		System.out.println("######################");
 
-		//List에 저장된 인스턴스를 equals를 이용하여 중복 제거.
+		// List에 저장된 인스턴스를 equals를 이용하여 중복 제거.
 		for (int i = 0; i < list.size(); i++) {
 			for (int j = list.size() - 1; j > i; j--) {
 				if (list.get(i).equals(list.get(j))) {
@@ -70,8 +68,22 @@ public class FootballPlayer {
 		for (FootballPlayer FP : list) {
 			System.out.println(FP);
 		}
-		
+
 		System.out.println("######################");
-		
+
+		// Set을 이용하여 저장 후 출력 //미완성
+		Set<FootballPlayer> set = null;
+		set = new HashSet<FootballPlayer>();
+
+		set.add(new FootballPlayer("1번선수", 1, "종로", 99));
+		set.add(new FootballPlayer("2번선수", 1, "종로", 20));
+		set.add(new FootballPlayer("3번선수", 1, "종로", 20));
+		set.add(new FootballPlayer("1번선수", 2, "종로", 99)); // 중복발생.
+		set.add(new FootballPlayer("2번선수", 1, "압구정", 20));
+
+		for (FootballPlayer FP : set) {
+			System.out.println(FP);
+		}
+
 	}// main end
 }
