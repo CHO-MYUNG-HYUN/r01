@@ -1,4 +1,4 @@
-package test;
+package complete;
 
 import java.util.Scanner;
 
@@ -19,7 +19,7 @@ public class Main11047 {
 		dp[0] = 0;
 		for(int i=1; i<=k; i++) {
 			dp[i] = 100001;
-			for(int j = 0; j<n; j++)
+			for(int j = 0; j<n; j++);
 		}
 //		for(int i=n-1; i>=0; i--) {
 //			count += k/coins[i];
