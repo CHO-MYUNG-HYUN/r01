@@ -81,7 +81,7 @@ from emp
 where (job = 'CLERK' or job = 'SALESMAN')
 and (sal =1600 and sal = 950 or sal != 1300);
 --where job in ('CLERK', 'SALESMAN')
---and (sal in (1600, 950) or sal !=1300);
+--and (sal in (1600, 950) or sal not in (1300));
 ​
 --15. 커미션이 $500 이상인 사원의 이름과 급여 및 커미션을 출력하시오.
 select ename, sal, comm
