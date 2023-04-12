@@ -1,5 +1,5 @@
-​-- 1. 덧셈연산자를 이용하여 모든 사원에 대해서 $300의 급여 인상을 계산한 후
--- 사원의 이름, 급여, 인상된 급여를 출력하시오.
+-- 1. 덧셈연산자를 이용하여 모든 사원에 대해서 $300의 급여 인상을 계산한 후
+--사원의 이름,급여, 인상된 급여를 출력하시오.
 select ename, sal, sal+300
 from emp;
 
@@ -67,8 +67,8 @@ order by sal desc, comm desc;
 select ename
 from emp
 where ename like '__R%';
-​
--- 13. 이름에 A와 E를 모두 포함하고 있는 사원의 이름을 표시하시오.
+
+-- 13. 이름에 A와 E를 모두 표현하고 있는 사원의 이름을 표시하시오.
 select ename
 from emp
 --where ename like '%A%E%'; -> E가 먼저 나오는 이름은 검색되지 않음.
@@ -82,10 +82,8 @@ where (job = 'CLERK' or job = 'SALESMAN')
 and (sal =1600 and sal = 950 or sal != 1300);
 --where job in ('CLERK', 'SALESMAN')
 --and (sal in (1600, 950) or sal not in (1300));
-​
---15. 커미션이 $500 이상인 사원의 이름과 급여 및 커미션을 출력하시오.
+
+-- 15. 커미션이 $500이상인 사원의 이름과 급여와 커미션을 출력하시오. 
 select ename, sal, comm
 from emp
-where comm >= 500;
-
-​
+where comm >= 500; ​
