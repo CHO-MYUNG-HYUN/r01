@@ -65,6 +65,26 @@ FROM
     LEFT OUTER JOIN emp m ON e.mgr = m.empno
 ORDER BY
     e.empno DESC;
+    
+--40. SELF JOIN을 사용하여 지정한 사원의 이름, 부서번호, 지정한 사원과 동일한 부서에서 근무하는 사원을 출력하시오. ( SCOTT )
+SELECT
+    e.ename,
+    e.deptno,
+    m.ename
+FROM
+         emp e
+    JOIN emp m ON e.ename = 'SCOTT'
+                  AND e.deptno = m.deptno;
+
+--41. SELF JOIN을 사용하여 WARD 사원보다 늦게 입사한 사원의 이름과 입사일을 출력하시오.
+SELECT
+    m.ename,
+    m.hiredate
+FROM
+         emp e
+    JOIN emp m ON e.ename = 'WARD'
+WHERE
+    e.hiredate < m.hiredate;
 
 --42. SELF JOIN 을 사용하여 관리자보다 먼저 입사한 모든 사원의 이름 및 입사일을 관리자의 이름 및 입사일과 함께 출력하시오.
 SELECT
