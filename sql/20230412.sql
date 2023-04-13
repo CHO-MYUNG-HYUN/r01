@@ -134,7 +134,7 @@ group by deptno
 --having sum(sal) >10000
 order by deptno;
 
-select job, count(*)
+select job, count(*), trunc(avg(sal)), sum(sal), max(sal)-min(sal)
 from emp
 group by job
 ;
