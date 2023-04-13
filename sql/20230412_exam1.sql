@@ -22,7 +22,10 @@ WHERE
 
 --19. 입사일을 년도는 2자리(YY), 월은 숫자(MM)로 표시하고 요일은 약어 (DY)로 지정하여 출력하시오.
 SELECT
-    to_char(hiredate, 'YY/MM/DY')
+    to_char(hiredate, 'YY/MM/DY') AS "입사 년/월/요일",
+    to_char(hiredate, 'YY')       AS "입사 년",
+    to_char(hiredate, 'MM')       AS "입사 월",
+    to_char(hiredate, 'DY')       AS "입사 요일"
 FROM
     emp;
 
@@ -79,11 +82,9 @@ GROUP BY
 
 --26. 관리자 수를 출력하시오.
 SELECT
-    COUNT(*)
+    COUNT(DISTINCT mgr)
 FROM
-    emp
-WHERE
-    job = 'MANAGER';
+    emp;
 
 --27. 급여 최고액, 급여 최저액의 차액을 출력하시오.
 SELECT
@@ -94,6 +95,7 @@ FROM
 --28. 직급별 사원의 최저 급여를 출력하시오. 관리자를 알 수 없는 사원과 최저 급여가 
 --    2000 미만인 그룹은 제외시키고 결과를 급여에 대한 내림차순으로 정렬하여 출력하시오.
 SELECT
+    job,
     MIN(sal)
 FROM
     emp
@@ -105,6 +107,20 @@ HAVING
     MIN(sal) >= 2000
 ORDER BY
     MIN(sal) DESC;
+
+SELECT
+    job,
+    MIN(sal)
+FROM
+    emp
+GROUP BY
+    job,
+    mgr
+HAVING MIN(sal) >= 2000
+       AND mgr IS NOT NULL
+ORDER BY
+    MIN(sal) DESC;
+
 
 --29. 각 부서에 대해 부서번호, 사원 수, 부서 내의 모든 사원의 평균 급여를 출력하시오.
 --    평균 급여는 소수점 둘째 자리로 반올림 하시오.
@@ -122,8 +138,10 @@ GROUP BY
 --    평균 급여는 정수로 반올림 하시오. DECODE 사용.
 SELECT
     deptno,
+    decode(deptno, 10, 'ACCOUNTING', 20, 'RESEARCH',
+           30, 'SALES', 40, 'OPERATION') AS 부서명,
     decode(deptno, 10, 'NEW YORK', 20, 'DALLAS',
-           30, 'CHICAGO', 40, 'BOSTON') AS 지역명,
+           30, 'CHICAGO', 40, 'BOSTON')  AS 지역명,
     COUNT(*),
     round(AVG(sal))
 FROM
