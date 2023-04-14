@@ -4,20 +4,6 @@
 SELECT
     COUNT(publisher)
 FROM
-         book b
-    JOIN (
-        SELECT
-            bookid
-        FROM
-                 orders o
-            JOIN customer c USING ( custid )
-        WHERE
-            name = '박지성'
-    ) p USING ( bookid );
-
-SELECT
-    COUNT(publisher)
-FROM
     book b
 WHERE
     bookid IN (
@@ -29,11 +15,8 @@ WHERE
         WHERE
             name = '박지성'
     );
-    
-    
-    
-    
-    
+
+
 --(6) 박지성이구매한도서의이름, 가격, 정가와판매가격의차이
 SELECT
     bookname,
@@ -52,24 +35,7 @@ FROM
     ) p USING ( bookid );
     
 
-    
 --(7) 박지성이구매하지않은도서의이름
---from 절
-SELECT
-    b.bookname
-FROM
-         book b
-    JOIN (
-        SELECT
-            o.bookid
-        FROM
-                 orders o
-            JOIN customer c USING ( custid )
-        WHERE
-            name != '박지성'
-    ) p ON b.bookid = p.bookid;
-    
---where절
 SELECT
     bookname
 FROM
@@ -84,6 +50,7 @@ WHERE
         WHERE
             name = '박지성'
     );
+
 
 --2 마당서점의운영자와경영자가요구하는다음질문에대해SQL 문을작성하시오.
 --(8) 주문하지않은고객의이름(부속질의사용)
@@ -185,3 +152,13 @@ WHERE
 
 
 --(2) 두 개 이상의 서로 다른 출판사에서 도서를 구매한 고객의 이름
+SELECT
+    name
+FROM
+         customer c
+    JOIN orders o USING ( custid )
+    JOIN book   b USING ( bookid )
+GROUP BY
+    name
+HAVING
+    COUNT(publisher) > 2;
