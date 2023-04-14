@@ -161,4 +161,4 @@ FROM
 GROUP BY
     name
 HAVING
-    COUNT(publisher) > 2;
+    COUNT(distinct publisher) >= 2;
