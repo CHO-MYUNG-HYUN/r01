@@ -146,5 +146,42 @@ WHERE
     
     
 --(13) 도서의판매액평균보다자신의구매액평균이더높은고객의이름
-select *
-from orders;
+SELECT
+    name
+FROM
+         orders o
+    JOIN customer c USING ( custid )
+GROUP BY
+    name
+HAVING
+    AVG(saleprice) > (
+        SELECT
+            AVG(saleprice)
+        FROM
+            orders
+    );
+    
+    
+--3. 마당서점에서 다음의 심화된 질문에 대해 SQL 문을 작성하시오.
+--(1) 박지성이 구매한 도서의 출판사와 같은 출판사에서 도서를 구매한 고객의 이름
+SELECT
+    name
+FROM
+         orders o
+    JOIN customer c USING ( custid )
+    JOIN book     b USING ( bookid )
+WHERE
+        c.name != '박지성'
+    AND b.publisher IN (
+        SELECT
+            publisher
+        FROM
+                 customer c
+            JOIN orders o USING ( custid )
+            JOIN book   b USING ( bookid )
+        WHERE
+            c.name = '박지성'
+    );
+
+
+--(2) 두 개 이상의 서로 다른 출판사에서 도서를 구매한 고객의 이름
