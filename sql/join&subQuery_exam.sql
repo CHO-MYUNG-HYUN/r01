@@ -2,7 +2,7 @@
 
 --(5) 박지성이구매한도서의출판사수
 SELECT
-    COUNT(publisher)
+    COUNT(DISTINCT publisher)
 FROM
     book b
 WHERE
@@ -42,7 +42,7 @@ FROM
     book
 WHERE
     bookid NOT IN (
-        SELECT
+        SELECT DISTINCT
             o.bookid
         FROM
                  orders o
@@ -60,12 +60,25 @@ FROM
     customer c
 WHERE
     c.custid NOT IN (
-        SELECT
+        SELECT DISTINCT
             custid
         FROM
             orders
     );
 
+SELECT
+    c.name
+FROM
+    customer c
+WHERE
+    NOT EXISTS (
+        SELECT
+            1
+        FROM
+            orders o
+        WHERE
+            c.custid = o.custid
+    );
 
 --(9) 주문금액의총액과주문의평균금액
 SELECT
@@ -83,6 +96,7 @@ FROM
          customer c
     JOIN orders o USING ( custid )
 GROUP BY
+    custid,
     name;
     
     
@@ -140,7 +154,7 @@ FROM
 WHERE
         c.name != '박지성'
     AND b.publisher IN (
-        SELECT
+        SELECT DISTINCT
             publisher
         FROM
                  customer c
@@ -153,12 +167,30 @@ WHERE
 
 --(2) 두 개 이상의 서로 다른 출판사에서 도서를 구매한 고객의 이름
 SELECT
-    name
+    c.name
 FROM
          customer c
     JOIN orders o USING ( custid )
     JOIN book   b USING ( bookid )
 GROUP BY
+    custid,
     name
 HAVING
-    COUNT(distinct publisher) >= 2;
+    COUNT(DISTINCT publisher) >= 2;
+
+SELECT
+    name
+FROM
+    customer
+WHERE
+    custid IN (
+        SELECT
+            o.custid
+        FROM
+                 orders o
+            JOIN book b USING ( bookid )
+        GROUP BY
+            o.custid
+        HAVING
+            COUNT(DISTINCT b.publisher) >= 2
+    );
