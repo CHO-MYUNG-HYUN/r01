@@ -127,16 +127,62 @@ WHERE
     
     
 --SCOTT 사원의 부서번호는 20번으로, 직급은 MANAGER로 한꺼번에 수정하도록 합시다
-update emp01
-set 
+UPDATE emp01
+SET
     deptno = 20,
     job = 'MANAGER'
-where 
+WHERE
     ename = 'SCOTT';
-    
-    
-update dept02
-set (dname, loc) = (select dname, loc from dept02 where deptno=30)
-where deptno = 20;
 
-select * from dept02;
+UPDATE dept02
+SET
+    ( dname,
+      loc ) = (
+        SELECT
+            dname,
+            loc
+        FROM
+            dept02
+        WHERE
+            deptno = 30
+    )
+WHERE
+    deptno = 20;
+
+SELECT
+    *
+FROM
+    dept02;
+
+COMMIT;
+
+DELETE FROM emp;
+
+SELECT
+    *
+FROM
+    emp;
+
+SELECT
+    *
+FROM
+    emp01;
+
+DELETE FROM emp01;
+
+ROLLBACK;
+
+
+--sequence : 연속된 숫자를 생성해주는 객체
+--create sequence 이름 [옵션]
+CREATE SEQUENCE seq_dept_deptno START WITH 10 INCREMENT BY 10;
+drop sequence seq_dept_deptno;
+
+--자동 생성된 값 : 시퀀드객체 이름.nextval
+select seq_dept_deptno.nextval from dual;
+select * from dept01;
+delete from dept01;
+insert into dept01 values(seq_dept_deptno.nextval, 'test이름', 'test위치');
+
+select seq_dept_deptno.currval
+from dual;
