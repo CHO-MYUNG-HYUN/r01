@@ -12,7 +12,7 @@ import domain.Dept;
 
 public class DeptDao {
 
-	Connection conn;;
+//	Connection conn;
 
 //	1. dept list : List<Dept>
 	public List<Dept> selectByAll(Connection conn) {
