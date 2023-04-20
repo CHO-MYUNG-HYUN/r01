@@ -156,6 +156,8 @@ FROM
 
 COMMIT;
 
+
+
 DELETE FROM emp;
 
 SELECT
