@@ -76,29 +76,60 @@ public class DeptDao {
 		return result;
 	}
 
-//	2. 부서번호로 검색 (Connection conn, int deptnum)
+//	2. 부서번호로 검색 (Connection conn, int deptno)
+	public Dept selectByDeptno(Connection conn, int deptno) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Dept result = null;
+
+		String sql = "Select * from dept where deptno = ?";
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, deptno);
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				result = new Dept(rs.getInt(1), rs.getString(2), rs.getString(3));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
 
 //	3. 부서 정보 입력
 
 //	4. 부서 정보 수정
 
 //	5. 부서 정보 삭제
-	
-	
+
 	public static void main(String[] args) throws SQLException {
-		
+
 		DeptDao dao = new DeptDao();
+
+		String dbUrl = "jdbc:oracle:thin:@localhost:1521:xe";
+		Connection conn = DriverManager.getConnection(dbUrl, "hr", "tiger");
+
+		List<Dept> list = dao.selectByAll(conn);
+
+		for (Dept dept : list) {
+			System.out.println(dept);
+		}
 		
-		 String dbUrl = "jdbc:oracle:thin:@localhost:1521:xe";
-		 Connection conn =DriverManager.getConnection(dbUrl, "hr", "tiger");
-		
-		 List<Dept> list = dao.selectByAll(conn);
-		 
-		 for(Dept dept : list) {
-			 System.out.println(dept);
-		 }
-		
-		
+		Dept dept = dao.selectByDeptno(conn, 10);
+		System.out.println("결과 : " + dept);
+
 	}
 
 }
