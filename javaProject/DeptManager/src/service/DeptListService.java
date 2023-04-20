@@ -29,8 +29,8 @@ public class DeptListService {
 //			트랜젝션 시작
 			conn.setAutoCommit(false);
 
-//			insert(conn)
-//			update(conn)
+//			insert(conn) conn을 Service에서 안주고 dao에서 만들시
+//			update(conn) 하나의 트랜잭션 안에서 계속해서 conn을 생성하게 된다.
 //			select(conn)
 //			update(conn)
 //			insert(conn)
