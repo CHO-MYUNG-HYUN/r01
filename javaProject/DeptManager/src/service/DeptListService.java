@@ -12,8 +12,14 @@ public class DeptListService {
 
 	DeptDao dao;
 
-	public DeptListService(DeptDao dao) {
-		this.dao = dao;
+	private DeptListService() {
+		this.dao = DeptDao.getInstance();
+	}
+	
+	private static DeptListService service = new DeptListService();
+	
+	public static DeptListService getInstance() {
+		return service;
 	}
 
 	public List<Dept> getDeptList() {
@@ -51,6 +57,14 @@ public class DeptListService {
 				}
 			}
 			e.printStackTrace();
+		} finally {
+			if(conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 
 		return list;
@@ -58,7 +72,7 @@ public class DeptListService {
 	
 	
 	public static void main(String[] args) {
-		DeptListService listService = new DeptListService(new DeptDao());
+		DeptListService listService = new DeptListService();
 		
 		List<Dept> list =listService.getDeptList();
 		

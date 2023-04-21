@@ -2,26 +2,31 @@ package controller;
 
 import java.util.List;
 
-import dao.DeptDao;
 import domain.Dept;
 import main.DeptManagerMain;
 import service.DeptListService;
 import service.DeptSearchService;
 import service.DeptUpdateService;
 
-public class DeptUpdateController {
+public class DeptUpdateController implements Controller{
 
 	DeptListService listService;
 	DeptSearchService searchService;
 	DeptUpdateService updateService;
 
-	public DeptUpdateController() {
-		this.listService = new DeptListService(new DeptDao());
-		this.searchService = new DeptSearchService();
-		this.updateService = new DeptUpdateService();
+	private DeptUpdateController() {
+		this.listService = DeptListService.getInstance();
+		this.searchService = DeptSearchService.getInstance();
+		this.updateService = DeptUpdateService.getInstance();
+	}
+	
+	private static DeptUpdateController controller = new DeptUpdateController();
+	
+	public static DeptUpdateController getInstance() {
+		return controller;
 	}
 
-	public void updateDept() {
+	public void process() {
 
 //		1. 수정하고자 하는 데이터를 사용자로부터 받아서 => Dept
 		Dept newDept = inputUpdateDept();

@@ -4,31 +4,31 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import dao.DeptDao;
-import domain.Dept;
 import utill.ConnectionProvider;
 
-public class DeptUpdateService {
-	
+public class DeptDeleteService {
+
 	DeptDao dao;
 
-	private DeptUpdateService() {
+	private DeptDeleteService() {
 		this.dao = DeptDao.getInstance();
 	}
 	
-	private static DeptUpdateService service = new DeptUpdateService();
+	private static DeptDeleteService service = new DeptDeleteService();
 	
-	public static DeptUpdateService getInstance() {
+	public static DeptDeleteService getInstance() {
 		return service;
 	}
 
-	public int updateDept(Dept dept) {
+	public int deleteDeptno(int deptno) {
 
 		Connection conn = null;
 		int result = 0;
 
 		try {
 			conn = ConnectionProvider.getConnection();
-			result = dao.updateDeptByDeptno(conn, dept);
+
+			result = dao.deleteDeptByDeptno(conn, deptno);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -37,6 +37,7 @@ public class DeptUpdateService {
 				try {
 					conn.close();
 				} catch (SQLException e) {
+					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

@@ -2,21 +2,26 @@ package controller;
 
 import java.util.List;
 
-import dao.DeptDao;
 import domain.Dept;
 import service.DeptListService;
 
 // 사용자 요쳥 분석 -> Controller 클래스는 사용자의 요청을 처리할 Service를 결정하고 
 //요청의 결과를 받아서 사용자에게 결과를 보여주는 역할
-public class DeptListController {
+public class DeptListController implements Controller{
 
 	DeptListService listService;
 
-	public DeptListController() {
-		this.listService = new DeptListService(new DeptDao());
+	private DeptListController() {
+		this.listService = DeptListService.getInstance();
+	}
+	
+	private static DeptListController controller = new DeptListController();
+	
+	public static DeptListController getInstance() {
+		return controller;
 	}
 
-	public void getDeptList() {
+	public void process() {
 
 //		사용자 요청 분석
 //		요청을 처리할 서비스를 이용해서 결과 데이터를 받는다.
@@ -38,6 +43,6 @@ public class DeptListController {
 
 		DeptListController listController = new DeptListController();
 		
-		listController.getDeptList();
+		listController.process();
 	}
 }
