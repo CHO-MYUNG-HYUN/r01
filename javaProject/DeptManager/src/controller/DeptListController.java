@@ -27,7 +27,7 @@ public class DeptListController {
 
 	void printData(List<Dept> list) {
 		System.out.println("부서 리스트 ================");
-		System.out.println("부서번호\t부서이름\t\t위치");
+		System.out.printf("%10s \t%10s \t%10s\n", "부서번호","부서이름","위치");
 		System.out.println("==========================");
 		for (Dept d : list) {
 			System.out.println(d.getDeptno() + "\t" + d.getDname() + "\t" + d.getLoc());
