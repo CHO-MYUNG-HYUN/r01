@@ -1,3 +1,4 @@
+package firstweb;
 //package firstweb;
 
 import java.io.IOException;
@@ -11,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet({ "/NowServlet", "/test/now" })
-public class NowServlet extends HttpServlet {
+public class DateServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
