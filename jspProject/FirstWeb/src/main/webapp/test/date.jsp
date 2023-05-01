@@ -1,3 +1,4 @@
+<%@page import="java.time.LocalDateTime"%>
 <%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -6,6 +7,9 @@
 	String name = "손흥민";
 	
 	out.println(name);
+	
+	LocalDateTime time = LocalDateTime.now();
+	
 	//request
 	//response
 	//session
@@ -22,6 +26,7 @@
 
 	<h1>안녕하세요~~!</h1>
 	<h3><%= now %></h3>
+	<h3><%= time %></h3>
 
 </body>
 </html>

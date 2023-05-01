@@ -1,15 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
 
-	<h1>로그인 처리페이지</h1>
+<%
+	String method = request.getMethod();
+	//out.println(method);
 	
+	if (method.equals("GET")){
+		response.sendRedirect("login_form.jsp");
+	} else {
+		String userid = request.getParameter("userid");
+		String password = request.getParameter("password");
+		
+		if(userid.equals(password)){
+			response.sendRedirect("mypage.jsp");
+		}else {
+			response.sendRedirect("login_form.jsp");
+		}
+	}
 
-</body>
-</html>
+%>
