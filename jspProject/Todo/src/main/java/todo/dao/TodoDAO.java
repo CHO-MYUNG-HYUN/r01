@@ -133,8 +133,6 @@ public class TodoDAO {
 				rs.getString("duedate"),
 				rs.getBoolean("finished"));
 	}
-	
-	
 
 //	RequestTodo 데이터를 받아서 insert 처리	
 	public int insertTodo(Connection conn, RequestTodo todo) {
