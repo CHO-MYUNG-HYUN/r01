@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import todo.domain.RequestTodo;
 import todo.service.TodoInsertService;
@@ -41,9 +42,6 @@ public class TodoRegisterController extends HttpServlet {
 					throws ServletException, IOException {
 
 		System.out.println("TodoRegisterController...doPost()...");
-
-//		Post 방식의 데이터 전달 => 데이터 한글 처리
-		request.setCharacterEncoding("utf-8");
 		
 //		입력폼에서 전달한 데이터를 받아서 처리
 		String todo =  request.getParameter("todo");

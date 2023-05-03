@@ -5,9 +5,11 @@ import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import todo.domain.TodoDTO;
 import todo.service.TodoViewService;
@@ -25,6 +27,9 @@ public class TodoReadController extends HttpServlet {
 			HttpServletRequest request,
 			HttpServletResponse response) 
 					throws ServletException, IOException {
+		
+		System.out.println("TodoReadController...doGet()...");
+			
 //		상세보기 페이지는 get 요청에 화면을 보여주는 처리
 //		어떤 Todo의 데이터인지 식벽할수 있는 키 데이터를 받아서 처리
 		String noStr = request.getParameter("no");
@@ -37,6 +42,14 @@ public class TodoReadController extends HttpServlet {
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/todo/read.jsp");
 		dispatcher.forward(request, response);
+		
+//		쿠키값 확인
+		Cookie[] cookies = request.getCookies();
+		for(Cookie c: cookies) {
+			if(c.getName().equals("uname")) {
+				System.out.println(c.getName()+ "=" +c.getValue());
+			}
+		}
 	}
 
 }
