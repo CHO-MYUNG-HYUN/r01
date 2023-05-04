@@ -10,21 +10,26 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpFilter;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-//@WebFilter("/*")
-public class UTF8Filter extends HttpFilter implements Filter {
 
+@WebFilter("/cust/list")
+public class CheckLoginFilter extends HttpFilter implements Filter {
+       
 	public void destroy() {
 
 	}
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 
-		System.out.println("UTF8Filter...doFilter()...");
+		HttpSession session = ((HttpServletRequest)request).getSession();
 		
-//		request의 인코딩 설정 : utf-8
-		((HttpServletRequest)request).setCharacterEncoding("UTF-8");
-		
+		if (session.isNew() || session.getAttribute("loginInfo") == null) {
+			System.out.println("로그인 하세요");
+			((HttpServletResponse)response).sendRedirect("login");
+			return;
+		}
 		chain.doFilter(request, response);
 	}
 

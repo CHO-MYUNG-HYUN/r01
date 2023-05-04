@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<h1>Todo List ( ${loginInfo } )</h1>
+<h1>Todo List ( ${loginInfo.uid } [${loginInfo.uname }])</h1>
 
 <ul>
 	<c:forEach items = "${todoList }" var="todo">

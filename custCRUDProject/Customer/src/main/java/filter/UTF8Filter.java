@@ -9,27 +9,29 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpFilter;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 
 //@WebFilter("/*")
 public class UTF8Filter extends HttpFilter implements Filter {
 
 	public void destroy() {
-
+	
 	}
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 
-		System.out.println("UTF8Filter...doFilter()...");
+		System.out.println("utf8Filter");
 		
-//		request의 인코딩 설정 : utf-8
 		((HttpServletRequest)request).setCharacterEncoding("UTF-8");
 		
 		chain.doFilter(request, response);
+		
+		return;
 	}
 
 	public void init(FilterConfig fConfig) throws ServletException {
-
+		
 	}
 
 }
