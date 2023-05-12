@@ -16,7 +16,7 @@
 
 <form method="post">
     todo <input type="text" name="todo"> <br>
-    dueDate <input type="date" name="dueDate"> <br>
+    dueDate <input type="date" name="duedate"> <br>
     <input type="reset"> <input type="submit" value="등록">
 </form>
 <a href="/todo/list">todo List</a>
