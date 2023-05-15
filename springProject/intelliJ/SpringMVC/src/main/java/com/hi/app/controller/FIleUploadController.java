@@ -1,5 +1,6 @@
 package com.hi.app.controller;
 
+import com.hi.app.domain.Report;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -104,5 +105,33 @@ public class FIleUploadController {
         model.addAttribute("fileName", report.getOriginalFilename());
 
         return "report/submit2";
+    }
+
+
+    @PostMapping("/submit3")
+    public String submit3(
+            Report report,
+            HttpServletRequest request
+    ) throws IOException {
+
+        // 파라미터 확인 log
+        log.info("학번 : " + report.getSnum());
+        log.info("이름 : " + report.getSname());
+        log.info("파일 이름 : " + report.getReport().getOriginalFilename());
+
+        // WEB 경로
+        String uploadURI = "/uploadfile/report";
+        // 시스템 경로
+        String dirRealPath = request.getSession().getServletContext().getRealPath(uploadURI);
+
+        // 저장 파일 경로 : File
+        File newFile = new File(dirRealPath, report.getReport().getOriginalFilename());
+
+        // 파일 저장
+        report.getReport().transferTo(newFile);
+
+        log.info("저장되었습니다.");
+
+        return "report/submit3";
     }
 }

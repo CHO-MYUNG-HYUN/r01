@@ -25,7 +25,19 @@
 <hr>
 
 <h1>과제 제출 2</h1>
-<form action="/report/submit2" method="post" enctype="multipart/form-data">
+<form action="report/submit2" method="post" enctype="multipart/form-data">
+
+    학번 : <input type="text" name="snum"/> <br>
+    이름 : <input type="text" name="sname"/> <br>
+    파일 : <input type="file" name="report"/> <br>
+    <input type="submit"/>
+
+</form>
+
+<hr>
+
+<h1>과제 제출 3</h1>
+<form action="report/submit3" method="post" enctype="multipart/form-data">
 
     학번 : <input type="text" name="snum"/> <br>
     이름 : <input type="text" name="sname"/> <br>
