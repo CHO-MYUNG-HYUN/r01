@@ -5,15 +5,13 @@ import com.hi.deptspring.deptspring.mapper.DeptMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
-public class DeptListService {
+public class DeptReadService {
 
     @Autowired
     private DeptMapper mapper;
 
-    public List<DeptDTO> getList() {
-        return mapper.selectAll();
+    public DeptDTO getDept(int deptno) {
+        return mapper.selectByDeptno(deptno);
     }
 }

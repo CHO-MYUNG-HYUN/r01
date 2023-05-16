@@ -12,4 +12,8 @@
     <select id="selectByDeptno" resultType="com.hi.deptspring.deptspring.domain.DeptDTO">
         select * from dept where deptno=#{no}
     </select>
+
+    <insert id="insertDept" parameterType="com.hi.deptspring.deptspring.domain.DeptRegistRequest">
+        insert into dept(dname, loc) values (#{dname}, #{loc})
+    </insert>
 </mapper>
