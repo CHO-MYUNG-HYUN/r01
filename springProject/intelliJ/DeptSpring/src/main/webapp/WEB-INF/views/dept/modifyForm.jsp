@@ -16,7 +16,24 @@
 <hr>
 
 <form method="post">
-
+    <table>
+        <tr>
+            <td>부서 번호</td>
+            <td><input type="number" name="deptno" value="${dept.deptno}" readonly></td>
+        </tr>
+        <tr>
+            <td>부서 이름</td>
+            <td><input type="text" name="dname" value="${dept.dname}"></td>
+        </tr>
+        <tr>
+            <td>부서 위치</td>
+            <td><input type="text" name="loc" value="${dept.loc}"></td>
+        </tr>
+        <tr>
+            <td><input type="reset" value="초기화"></td>
+            <td><input type="submit" value="수정"></td>
+        </tr>
+    </table>
 </form>
 </body>
 </html>

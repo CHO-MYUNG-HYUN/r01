@@ -17,4 +17,9 @@ public interface DeptMapper {
 
     // DeptRegistRequest 를 받아서 insert 해주는 메소드
     int insertDept(DeptRegistRequest request);
+
+    // DeptDTO 전달 받고 update 메소드
+    int updateDept(DeptDTO deptDTO);
+
+    int deleteDept(int deptno);
 }
