@@ -18,11 +18,6 @@ import java.util.List;
 public class DeptRestController {
 
 
-
-
-
-
-
     @Autowired
     private DeptListService listService;
 
@@ -49,9 +44,9 @@ public class DeptRestController {
 
         // Header 정의 => HttpHeaders
         HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.set("some-header","some-value");
+        httpHeaders.set("some-header", "some-value");
 
-        ResponseEntity <List<DeptDTO>> entity =
+        ResponseEntity<List<DeptDTO>> entity =
                 new ResponseEntity<>(
                         listService.getList(),
                         httpHeaders,
@@ -72,37 +67,42 @@ public class DeptRestController {
 
     // post : JSON 형식의 데이터를 받아서 데이터베이스에 저장
     @PostMapping
-    public String regDept(
+    public ResponseEntity<String> regDept(
             @RequestBody DeptRegistRequest registRequest
-            ) {
+    ) {
         // JSON 데이터를 JAVA 객체로 받는다.
         log.info("JSON -> DeptRegistRequest : " + registRequest);
 
-        registService.registDept(registRequest);
-        return "insert OK!";
+        int result = registService.registDept(registRequest);
+
+        return new ResponseEntity<>("insert " + (result == 1 ? "OK" : "FAIL"), HttpStatus.OK);
+        // insert OK / Insert FAIL
     }
 
     // put /{no} : 하나의 부서 정보를 수정
     @PutMapping("/{no}")
-    public String edit(
+    public ResponseEntity<String> edit(
             @PathVariable("no") int deptno,
             @RequestBody DeptDTO dept
-    ){
+    ) {
         log.info("JSON -> DeptDTO : " + dept);
 
-        modifyService.modifyDept(dept);
-        return "update";
+        int result = modifyService.modifyDept(dept);
+        String msg = "update " + (result == 1 ? "OK" : "FAIL");
+        //return "update";
+        return new ResponseEntity<>(msg, HttpStatus.OK);
     }
 
 
     // delete /{no} : 부서 정보 하나를 삭제
     @DeleteMapping("/{no}")
-    public String delete(
+    public ResponseEntity<String> delete(
             @PathVariable("no") int deptno
     ) {
         log.info("delete >> " + deptno);
-        deleteService.deleteDept(deptno);
-        return "delete";
+        int result = deleteService.deleteDept(deptno);
+        String msg = "delete " + (result == 1 ? "OK" : "FAIL");
+        return new ResponseEntity<>(msg, HttpStatus.OK);
     }
 
 }
