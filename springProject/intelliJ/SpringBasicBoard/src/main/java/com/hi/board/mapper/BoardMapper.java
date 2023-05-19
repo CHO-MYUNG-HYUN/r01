@@ -10,6 +10,10 @@ import java.util.List;
 @Mapper
 public interface BoardMapper {
 
+    List<BoardDTO> selectList(int startNum, int count);
+
+    int selectTotalCount();
+
     List<BoardDTO> selectAll();
 
     BoardDTO selectByBno(int bno);
