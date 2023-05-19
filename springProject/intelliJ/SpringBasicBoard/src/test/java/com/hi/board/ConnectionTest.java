@@ -30,6 +30,14 @@ public class ConnectionTest {
 
 
     @Test
+    public void selectByBnoTest() {
+        BoardDTO board = boardMapper.selectByBno(1);
+        log.info("1번 게시물 : " + board);
+        board = boardMapper.selectByBno(6);
+        log.info("1번 게시물 : " + board);
+    }
+
+    @Test
     public void boardListTest() {
         List<BoardDTO> list = boardMapper.selectAll();
 

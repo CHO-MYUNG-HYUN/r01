@@ -18,3 +18,14 @@ create table tbl_reply (
 );
 alter table tbl_reply add constraint pk_reply primary key (rno);
 alter table tbl_reply add constraint fk_reply_board foreign key (bno) references tbl_board (bno);
+
+-- tbl_board SQL
+
+-- select
+select * from tbl_board;
+-- insert 
+insert into tbl_board (title, content, writer) values ('게시글 테스트1', '게시물 쓰기테스트1', '테스터');
+-- insert into tbl_board (title, content, writer) values (#{}, #{}, #{});
+-- update
+
+-- delete
