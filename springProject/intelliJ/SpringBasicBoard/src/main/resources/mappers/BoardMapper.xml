@@ -6,6 +6,33 @@
 <!--namespace 속성 설정은 필수 !!! -> mapper interface의 풀네임-->
 <mapper namespace="com.hi.board.mapper.BoardMapper">
 
+    <select id="selectList"
+            parameterType="com.hi.board.domain.PageOption"
+            resultType="com.hi.board.domain.BoardDTO">
+
+        select * from tbl_board
+        <where>
+            <if test="searchOption.searchType != null and searchOption.keyword != null">
+                <!--제목-->
+                <if test="searchOption.searchType == 'title'">
+                    title like concat('%', #{searchOption.keyword} ,'%')
+                </if>
+                <!--내용-->
+                <if test="searchOption.searchType == 'content'">
+                    content like concat('%', #{searchOption.keyword} ,'%')
+                </if>
+                <!--작성자-->
+                <if test="searchOption.searchType == 'writer'">
+                    writer like concat('%', #{searchOption.keyword} ,'%')
+                </if>
+            </if>
+        </where>
+
+
+        order by bno desc
+        limit #{startNum}, #{count}
+    </select>
+
     <select id="selectAll"
             resultType="com.hi.board.domain.BoardDTO">
         select * from tbl_board
@@ -16,14 +43,29 @@
         select * from tbl_board where bno = #{bno}
     </select>
 
-    <select id="selectList"
+    <!--<select id="selectList"
             resultType="com.hi.board.domain.BoardDTO">
-        select * from tbl_board order by desc limit #{param1}, #{param2}
-    </select>
+        select * from tbl_board order by bno desc limit #{param1}, #{param2}
+    </select>-->
 
     <select id="selectTotalCount"
+            parameterType="com.hi.board.domain.BoardSearchOption"
             resultType="int">
         select count(*) from tbl_board
+
+        <where>
+            <if test="searchType != null and keyword != null">
+                <if test="searchType == 'title'">
+                    title like concat('%', #{keyword}, '%')
+                </if>
+                <if test="searchType == 'content'">
+                    content like concat('%', #{keyword}, '%')
+                </if>
+                <if test="searchType == 'writer'">
+                    writer like concat('%', #{keyword}, '%')
+                </if>
+            </if>
+        </where>
     </select>
 
     <insert id="insertBoard"

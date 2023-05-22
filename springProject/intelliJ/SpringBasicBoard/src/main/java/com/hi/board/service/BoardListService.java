@@ -2,6 +2,8 @@ package com.hi.board.service;
 
 import com.hi.board.domain.BoardDTO;
 import com.hi.board.domain.BoardListPage;
+import com.hi.board.domain.BoardSearchOption;
+import com.hi.board.domain.PageOption;
 import com.hi.board.mapper.BoardMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,13 +22,21 @@ public class BoardListService {
         return mapper.selectAll();
     }
 
-    public BoardListPage getPage(int pageNum) {
+    public BoardListPage getPage(int pageNum, BoardSearchOption searchOption) {
         // 현재 요청 페이지
         int requestPageNum = pageNum;
 
+        PageOption pageOption = PageOption
+                .builder()
+                .searchOption(searchOption)
+                .startNum((requestPageNum-1)*countPerPage)
+                .count(countPerPage)
+                .build();
+
         // 요청 페이지의 리스트 항목 : List<BoardDTO>
-        List<BoardDTO> list = mapper.selectList((requestPageNum-1)*countPerPage, countPerPage);
-        int totalCount = mapper.selectTotalCount();
+        // List<BoardDTO> list = mapper.selectList((requestPageNum-1)*countPerPage, countPerPage);
+        List<BoardDTO> list = mapper.selectList(pageOption);
+        int totalCount = mapper.selectTotalCount(searchOption);
 
         BoardListPage page = new BoardListPage(
                 countPerPage,
@@ -35,6 +45,6 @@ public class BoardListService {
                 totalCount
         );
 
-        return null;
+        return page;
     }
 }

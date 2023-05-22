@@ -1,7 +1,17 @@
 package com.hi.board.domain;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+import org.springframework.web.bind.annotation.GetMapping;
+
 import java.util.List;
 
+//@Getter
+//@Setter
+//@ToString
+@Data
 public class BoardListPage {
 
     // 페이지 당 출력할 개시물의 개수
