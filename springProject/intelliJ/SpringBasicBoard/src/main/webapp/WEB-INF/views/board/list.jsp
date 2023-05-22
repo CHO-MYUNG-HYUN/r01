@@ -21,7 +21,11 @@
 
 <h1>게시판</h1>
 <hr>
-
+<div>
+    로그인 정보 : ${loginInfo}
+    <a href="/logout">logout</a>
+</div>
+<hr>
 <div class="searchArea">
     <form>
         <select name="searchType">
