@@ -8,23 +8,23 @@
     <script>
 
         // 문자열 처리 => 작음 따옴표 또는 큰 따옴표 사용
-        alert('Hello!!')
+        // alert('Hello!!')
 
-        console.log('안녕 !!!')
+        // console.log('안녕 !!!')
 
-        console.log('안녕 \t 하세요')
-        console.log('안녕 \'하세요\'')
+        // console.log('안녕 \t 하세요')
+        // console.log('안녕 \'하세요\'')
 
 
-        console.log('number =>', number)
+        // console.log('number =>', number)
 
-        var number = 111;
+        // var number = 111;
 
-        console.log('number =>', number)
+        // console.log('number =>', number)
 
-        // var name = prompt('문자열', 'son')
+        // // var name = prompt('문자열', 'son')
 
-        console.log('name >>>', name)
+        // console.log('name >>>', name)
 
         // let check = confirm("이동할까요 ?")
         // if(check){
@@ -57,6 +57,65 @@
         
         */
 
+        var hour = 10
+        if(hour<12){
+            console.log('오전입니다.')
+        }
+
+        if(hour<12){
+            console.log('오전입니다.')
+        }else{
+            console.log('오후입니다.')
+        }
+
+        ///////////////////////////////////
+
+        for(let i = 0 ; i<5 ; i++ ){
+            console.log(i)
+        }
+        console.log('-----------')
+
+        // 난수 발생 : 1 ~ 10
+        const r1 = Math.random()
+        const num = Math.floor(r1*10+1)
+        console.log(num)
+
+
+        for (let i = 0 ; i < 5 ; i++){
+
+        
+        // 사용자로 부터 숫자를 입력 받는다.
+        let userNum = prompt('숫자를 입력하세요.')
+        console.log('사용자 입력 숫자', userNum, typeof(userNum))
+
+        const uNum = Number(userNum)
+        console.log('사용자 입력 숫자', uNum, typeof(uNum))
+
+        if(!uNum){
+            console.log('숫자 형식이 아니여서 다시 숫자를 입력 받습니다.')
+        }
+        if(uNum>num){
+            console.log('낮은 숫자입니ㅏㄷ.')
+        }else if(uNum<num){
+            console.log('높은 숫자 입니다.')
+        }else{
+            console.log('정답입니다.')
+            break
+        }
+        }
+
+        // 짝수 홀수 판별
+        let num2 = prompt('숫자를 입력해주세요.')
+        switch (num2%2) {
+            case 0:
+                console.log('짝수')
+                break;
+            case 1:
+                console.log('홀수')
+                break;
+        }
+
+        console.log(num2%2==0 ? '짝수' : '홀수')
     </script>
 </head>
 <body>
