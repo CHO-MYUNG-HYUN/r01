@@ -25,6 +25,12 @@ alter table tbl_reply add constraint fk_reply_board foreign key (bno) references
 select * from tbl_board;
 select count(*) from tbl_board;
 
+SELECT bno, title, content, file, uname as writer, memidx
+FROM tbl_board b, member m
+where b.memidx=m.idx
+;
+
+
 -- insert 
 insert into tbl_board (title, content, writer) values ('게시글 테스트1', '게시물 쓰기테스트1', '테스터');
 -- insert into tbl_board (title, content, writer) values (#{}, #{}, #{});
