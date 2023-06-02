@@ -5,59 +5,64 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.zerock.bj1.service.TodoService;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
 @Controller
-@Log4j2
+@RequiredArgsConstructor
 @RequestMapping("/todo/")
+@Log4j2
 public class TodoController {
     
-    @GetMapping("list")
-    public void list(){
-        log.info("get list...");   
-    }
+    private final TodoService todoService;
 
-    @GetMapping("add")
-    public void add(){
-        log.info("get add...");
-    }
+       // list
+       @GetMapping("list")
+       public void list(){
+           log.info("list");
+       }
+   
+       @GetMapping("add")
+       public void add(){
+           log.info("add");
+       }
+   
+       @PostMapping("add")
+       public String addPost(){
+           log.info("Add Post..............");
+           return "redirect:/todo/list";
+       }
+       
+       @GetMapping("read/{tno}")
+       public String read(@PathVariable("tno") Long tno) {
+   
+           log.info("read");
+   
+           return "/todo/read";
+       }
+   
+       @GetMapping("modify/{tno}")
+       public String modify(@PathVariable("tno") Long tno) {
+   
+           log.info("read");
+   
+           return "/todo/modify";
+       }
+   
+       @PostMapping("remove")
+       public String removePost() {
+           log.info("Remove Post..............");
+           return "redirect:/todo/list";
+       }
+       
+       @PostMapping("modify/{tno}")
+       public String modifyPost(@PathVariable("tno") Long tno) {
+           
+           log.info("Modify Post..............");
+           return "redirect:/todo/read/" + tno;
+       }
+       
 
-    @PostMapping("add")
-    public String addPost(){
-        log.info("post add...");
-        return "redirect:/todo/list";
-    }
-
-    @GetMapping("read/{tno}")
-    public String read(
-        @PathVariable("tno") Long tno
-    ){
-        log.info("get read...");
-        return "/todo/read";
-    }
-
-    @GetMapping("modify/{tno}")
-    public String modify(
-        @PathVariable("tno") Long tno
-    ){
-        log.info("get modify...");
-        return "/todo/modify";
-    }
-
-    @PostMapping("modify/{tno}")
-    public String modifyPost(
-        @PathVariable("tno") Long tno
-    ){
-        log.info("post modify...");
-        return "redirect:/todo/read/" + tno;
-    }
-
-    @PostMapping("remove/{tno}")
-    public String removePost(
-        @PathVariable("tno") Long tno
-    ){
-        log.info("post remove...");
-        return "redirect:/todo/list";
-    }
 }
