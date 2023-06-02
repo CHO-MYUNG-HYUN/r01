@@ -35,3 +35,8 @@ out/
 
 ### VS Code ###
 .vscode/
+
+.css
+.map
+.png
+.js
