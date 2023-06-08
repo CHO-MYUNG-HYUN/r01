@@ -3,7 +3,7 @@ package org.zerock.bj2.mappers;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
-@Mapper
+//@Mapper
 public interface TimeMapper {
     
 
