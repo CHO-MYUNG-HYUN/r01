@@ -31,6 +31,8 @@ public class PageRequestDTO {
     public void setSize(int size){
         if(size > 100 || size < 0) {
             this.size = 10;
+        } else {
+            this.size = size;
         }
     }
 
