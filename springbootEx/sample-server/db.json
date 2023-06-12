@@ -1,9 +1,84 @@
 {
-    "posts": [
-      { "id": 1, "title": "json-server", "author": "typicode" }
-    ],
-    "comments": [
-      { "id": 1, "body": "some comment", "postId": 1 }
-    ],
-    "profile": { "name": "typicode" }
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "title": "testTitle",
+      "author": "testUser",
+      "id": 3
+    },
+    {
+      "title": "testTitle",
+      "author": "testUser",
+      "id": 4
+    },
+    {
+      "title": "testTitle",
+      "author": "testUser",
+      "id": 5
+    },
+    {
+      "title": "testTitle",
+      "author": "testUser",
+      "id": 6
+    },
+    {
+      "title": "testTitle",
+      "author": "testUser",
+      "id": 7
+    },
+    {
+      "title": "testTitle",
+      "author": "testUser",
+      "id": 8
+    },
+    {
+      "title": "test",
+      "author": "testa",
+      "id": 9
+    },
+    {
+      "title": "test",
+      "author": "testa",
+      "id": 10
+    },
+    {
+      "title": "test",
+      "author": "testa",
+      "id": 11
+    },
+    {
+      "title": "test",
+      "author": "testa",
+      "id": 12
+    },
+    {
+      "title": "ㅁㄴㅇ",
+      "author": "ㄴㅁㅇ",
+      "id": 13
+    },
+    {
+      "title": "ㅁㄴㅇ",
+      "author": "ㅁㄴㅇ",
+      "id": 14
+    },
+    {
+      "title": "ㅁㄴㅇㅁ",
+      "author": "ㅁㄴㅇ",
+      "id": 15
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
   }
+}
