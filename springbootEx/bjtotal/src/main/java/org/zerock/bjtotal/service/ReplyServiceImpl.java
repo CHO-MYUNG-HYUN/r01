@@ -7,17 +7,17 @@ import org.zerock.bjtotal.dto.PageRequestDTO;
 import org.zerock.bjtotal.dto.PageResponseDTO;
 import org.zerock.bjtotal.dto.ReplyDTO;
 import org.zerock.bjtotal.mappers.ReplyMapper;
-import org.zerock.bjtotal.mappers.TodoMapper;
+//import org.zerock.bjtotal.mappers.TodoMapper;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
+//import lombok.extern.log4j.Log4j2;
 
 @Service
-@Log4j2
+//@Log4j2
 @RequiredArgsConstructor
 public class ReplyServiceImpl implements ReplyService{
 
-    private final TodoMapper todoMapper;
+    //private final TodoMapper todoMapper; 기본적으로 시간 찍어보기.
     private final ReplyMapper replyMapper;
 
     @Override
