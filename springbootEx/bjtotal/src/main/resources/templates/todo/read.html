@@ -10,11 +10,12 @@
 <body>
   <div layout:fragment="content">
     <h1>Read</h1>
+    [[${todo}]]
     <ul class="postsDiv">
 
     </ul>
 
-    <div class="modal" tabindex="-1" role="dialog">
+    <div class="modal replyModal" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -24,23 +25,143 @@
             </button>
           </div>
           <div class="modal-body">
-            <input type="text" name="title">
-            <input type="text" name="author">
+            <input type="text" name="gno" readonly>
+            <input type="text" name="reply" value="AAA">
+            <input type="text" name="replyer" value="user00">
           </div>
           <div class="modal-footer">
+            <button type="button" class="btn btn-info btnAdd">ADD</button>
             <button type="button" class="btn btn-danger btnDelete">DELETE</button>
-            <button type="button" class="btn btn-primary">MODIFY</button>
+            <button type="button" class="btn btn-primary btnModify">MODIFY</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
-    </div>
+  </div>
 
+  <!-- 댓글 목록 출력 -->
+  <div>
+    <ul class="replyUL">
+  
+    </ul>
+  </div>
+
+    <!-- axios 선언문 -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
   </div>
 
-  <script layout:fragment="script">
+  <script layout:fragment="script" th:inline="javascript">
+
+    // todoDTO를 받음
+    //const obj = [[${todo}]]
+
+    // 구조문의 할당. tno만 갖고옴.
+    // const {tno} = [[${todo}]]
+
+    const replyModal = new bootstrap.Modal(document.querySelector(".replyModal"))
+    const replyUL = document.querySelector(".replyUL")
+    const {tno} = [[${todo}]]
+
+    // 모달 관리
+    const gnoInput = document.querySelector("input[name='gno']")
+    const replyInput = document.querySelector("input[name='reply']")
+    const replyerInput = document.querySelector("input[name='replyer']")
+
+    //댓글 목록 axios
+    const getRemoteList = async (pageNum) => {
+      const {data} = await axios.get(`http://localhost:8080/replies/${tno}/list?page=${pageNum}`)
+      // const {data} = await axios.get(`http://localhost:8080/replies/${tno}/list`)
+      return data
+    }
+
+    const postRemoteAdd = async (reply) => {
+      const {data} = await axios.post(`http://localhost:8080/replies/${tno}/new`, reply)
+      return data
+    }
+
+    let page = 1
+
+    // 비동기 get 테스트
+    // getRemoteList(page).then(result => {
+    //   console.log(result)
+    // })
+
+    // 비동기 등록 테스트
+    const reply = {tno:tno, reply:"Test Reply", replyer:"r1"}
+
+    const loadReply = async(page, goEnd = false) => {
+            
+      const data = await getRemoteList(page)
+
+      onsole.log("loadReply..........")
+      console.log(data)
+
+      const {list, total} = data
+
+      let str = ""
+
+      for(let i = 0; i < list.length; i++){
+        const {rno, reply, replyer, gno} = list[i]
+        str += `<li data-rno=${rno} data-gno=${gno}>${reply} <button>답글</button></li>`
+      } // end for
+
+      replyUL.innerHTML = str
+
+    }
+
+    loadReply(page, true)
+
+    // 댓글조회, 답글쓰기 이벤트
+    replyUL.addEventListener("click", (e) => {
+      e.stopPropagation()
+      e.preventDefault()
+
+      const target = e.target
+
+      const tag = target.tagName
+      if(tag === 'LI'){
+
+      } else if(tag === 'BUTTON'){
+
+        const liObj = target.closest("li")
+        const gno = liObj.getAttribute("data-gno")
+
+        gnoInput.value = gno;
+
+        replyModal.show()
+
+      }
+
+    }, false)
+
+    document.querySelector(".btnAdd").addEventListener("click", e => {
+          
+      const reply = {
+        tno:tno, 
+        gno:gnoInput.value,
+        reply:replyInput.value,
+        replyer:replyerInput.value
+      }
+
+      console.log(reply)
+          
+      postRemoteAdd(reply)
+      .then(result =>{
+        alert("성공")
+        loadReply(page)  
+      }).catch(e => {
+        console.log("실패")
+        console.log(e.response.data)
+      })
+
+    }, false)
+
+
+  </script>
+
+  <!-- 비동기 JS -->
+  <!-- <script layout:fragment="script">
     const postsDiv = document.querySelector(".postsDiv")
     const path = "http://localhost:9090/posts"
     const modalDiv = $(".modal")
@@ -125,7 +246,7 @@
     
 
 
-  </script>
+  </script> -->
 
 </body>
 </html>

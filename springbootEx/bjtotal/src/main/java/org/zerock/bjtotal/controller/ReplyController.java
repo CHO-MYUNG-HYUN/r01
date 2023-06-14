@@ -5,6 +5,8 @@ import java.util.Map;
 
 
 import org.springframework.http.MediaType;
+import org.springframework.validation.BindException;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +18,7 @@ import org.zerock.bjtotal.dto.PageResponseDTO;
 import org.zerock.bjtotal.dto.ReplyDTO;
 import org.zerock.bjtotal.service.ReplyService;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
@@ -38,10 +41,16 @@ public class ReplyController {
     @PostMapping("{tno}/new")
     public Map<String, Long> register(
         @PathVariable("tno") Long tno,
-        @RequestBody ReplyDTO replyDTO
-    ){
+        @Valid @RequestBody ReplyDTO replyDTO,
+        BindingResult bindingResult
+    ) throws Exception{
         
         replyDTO.setTno(tno);
+   
+        if(bindingResult.hasErrors()){
+            throw new BindException(bindingResult);
+        }
+        
 
         Long rno  = service.register(replyDTO);
 

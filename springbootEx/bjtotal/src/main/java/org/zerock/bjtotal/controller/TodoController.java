@@ -38,10 +38,21 @@ public class TodoController {
        @GetMapping("read/{tno}")
        public String read(
             @PathVariable("tno") long tno,
-            PageRequestDTO pageRequestDTO){
+            PageRequestDTO pageRequestDTO,
+            Model model
+        ){
 
         log.info("read..........");
         log.info(tno);
+
+        TodoDTO todoDTO = TodoDTO.builder()
+        .tno(tno)
+        .title("Sample...")
+        .writer("user122")
+        .dueDate("2023-06-14")
+        .build();
+
+        model.addAttribute("todo", todoDTO);
 
         return "todo/read";
        }
