@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-// import org.zerock.b4.dto.RequestFileRemoveDTO;
+import org.zerock.b4.dto.RequestFileRemoveDTO;
 import org.zerock.b4.dto.UploadResultDTO;
 
 import lombok.extern.log4j.Log4j2;
@@ -112,6 +112,23 @@ public class UpDownController {
     
       log.info("delete file....");
       log.info(fileName);
+
+      File originFile = new File(uploadPath, fileName);
+
+      try {
+        String mimeType = Files.probeContentType(originFile.toPath());
+
+        if(mimeType.startsWith("image")){
+          File thumbFile = new File(uploadPath,"s_"+fileName);
+          thumbFile.delete();
+        }
+        originFile.delete();
+
+      } catch (IOException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
+
       
       return Map.of("result","success");
   }

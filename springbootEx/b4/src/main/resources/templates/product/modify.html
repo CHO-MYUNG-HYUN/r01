@@ -1,29 +1,29 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html  xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
 <body>
-  <h1>Product Register Page</h1>
+  <h1>Product modify</h1>
+  
+  <form class="actionForm" th:action="|/product/modify/${dto.pno}|" method="post">
+      <p>
+        <input type="text" name="pno" th:value="${dto.pno}">
+      </p>
+      <p>
+        <input type="text" name="pname" th:value="${dto.pname}">
+      </p>
+      <p>
+        <button class="modBtn">Modify</button>
+        <button>Delete</button>
+      </p>
 
-  <form class="actionForm" action="/product/register" method="post">
-    <div>
-      <input type="text" name="pname" value="상품1">
-    </div>
-    <div>
-      <input type="number" name="price" value="12000">
-    </div>
-    <div>
-      <button class="saveBtn">Register</button>
-    </div>
   </form>
 
   <input class="uploadInput" type="file" name="upload" multiple >
   <button class="uploadBtn">UPLOAD</button>
-
 
   <div class="uploadDiv">
     <ul class="uploadUL">
@@ -46,18 +46,20 @@
     }
   </style>
 
+
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script>
+  <script th:inline="javascript">
+    
+    const pno = [[${dto.pno}]]
+    const uploadUL = document.querySelector(".uploadUL")
 
     const uploadBtn = document.querySelector(".uploadBtn")
     const uploadInput = document.querySelector(".uploadInput")
-    const uploadUL = document.querySelector(".uploadUL")
 
-    const saveBtn = document.querySelector(".saveBtn")
-
+    const modBtn = document.querySelector(".modBtn")
     const actionForm = document.querySelector(".actionForm")
 
-    saveBtn.addEventListener("click", e => {
+    modBtn.addEventListener("click", e => {
 
       e.preventDefault()
       e.stopPropagation()
@@ -83,38 +85,27 @@
 
       actionForm.submit()
 
-    }, false)
+      }, false)
 
-
-    uploadBtn.addEventListener("click", e => {
-      e.preventDefault()
-      e.stopPropagation()
-
-      console.dir(uploadInput.files)
-
-      if(!uploadInput.files || uploadInput.files.length === 0){
-        return
-      }
-
-      const formData = new FormData()
-
-      for(let i = 0; i < uploadInput.files.length ; i++){
-        formData.append("files",uploadInput.files[i] )
-      }
-
-      console.dir(formData)
-
-      const header = {headers: {"Content-Type": "multipart/form-data"}}
-
-      axios.post('http://localhost:8080/upload', formData, header)
+    const loadImages = () => {
+      axios.get(`http://localhost:8080/product/images/${pno}`)
       .then(res => {
-        const result = res.data
-        console.log(result)
-        showProducts(result)
+        const arr = res.data
+        console.log(arr)
+        
+        const objArr = arr.map(str => {
+          const uuid = str.substring(0,36)
+          const fileName = str.substring(37)
+          const link ="s_"+str
+          return {uuid: uuid, fileName: fileName, link:link}
+
+        })
+
+        console.log(objArr)
+        showProducts(objArr)
+
       })
-
-
-    },false)
+    }
 
     const showProducts = (arr) => {
 
@@ -149,19 +140,42 @@
 
 
       axios.delete(`http://localhost:8080/removeFile/${uuid}_${fileName}`)
-
-
       liObj.remove()
-
-
-
     }
 
-  // window.onbeforeunload = function (e) {
+    uploadBtn.addEventListener("click", e => {
+      e.preventDefault()
+      e.stopPropagation()
 
-	//   return 'Are you sure'; 
-  // }
+      console.dir(uploadInput.files)
 
+      if(!uploadInput.files || uploadInput.files.length === 0){
+        return
+      }
+
+      const formData = new FormData()
+
+      for(let i = 0; i < uploadInput.files.length ; i++){
+        formData.append("files",uploadInput.files[i] )
+      }
+
+      console.dir(formData)
+
+      const header = {headers: {"Content-Type": "multipart/form-data"}}
+
+      axios.post('http://localhost:8080/upload', formData, header)
+      .then(res => {
+        const result = res.data
+        console.log(result)
+        showProducts(result)
+      })
+
+
+    },false)
+
+
+    loadImages()
+    
   </script>
 </body>
 </html>
