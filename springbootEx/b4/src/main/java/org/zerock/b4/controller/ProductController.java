@@ -50,11 +50,15 @@ public class ProductController {
   }
 
   // //step2 post로 상품 수정 
-  // @PostMapping("/modify/{pno}")
-  // public String modifyPost(//DTO ){
-  //   //DTO를 확인 -> 등록 과정과 동일한 내용 pno존재 
-  //   //DTO를 개발 
-  // }
+  @PostMapping("/modify/{pno}")
+  public String modifyPost( @PathVariable("pno") Integer pno, ProductDTO dto ){
+  
+    dto.setPno(pno);
+
+    productService.modify(dto);
+    
+    return "redirect:/product/read/"+pno;
+  }
 
   @GetMapping("/list")
   public void list(PageRequestDTO pageRequestDTO, Model model){

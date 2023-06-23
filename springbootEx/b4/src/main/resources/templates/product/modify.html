@@ -19,6 +19,9 @@
         <button class="modBtn">Modify</button>
         <button>Delete</button>
       </p>
+      <div class="uploadHidden">
+
+      </div>
 
   </form>
 
@@ -58,6 +61,8 @@
 
     const modBtn = document.querySelector(".modBtn")
     const actionForm = document.querySelector(".actionForm")
+    const uploadHidden = document.querySelector(".uploadHidden")
+
 
     modBtn.addEventListener("click", e => {
 
@@ -81,7 +86,7 @@
         str += `<input type='hidden' name='fileNames' value='${uuid}_${fileName}'>`
       }
 
-      actionForm.innerHTML += str
+      uploadHidden.innerHTML += str
 
       actionForm.submit()
 

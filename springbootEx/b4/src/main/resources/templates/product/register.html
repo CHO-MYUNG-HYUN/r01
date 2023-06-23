@@ -19,6 +19,9 @@
     <div>
       <button class="saveBtn">Register</button>
     </div>
+    <div class="uploadHidden">
+
+    </div>
   </form>
 
   <input class="uploadInput" type="file" name="upload" multiple >
@@ -56,6 +59,7 @@
     const saveBtn = document.querySelector(".saveBtn")
 
     const actionForm = document.querySelector(".actionForm")
+    const uploadHidden = document.querySelector(".uploadHidden")
 
     saveBtn.addEventListener("click", e => {
 
@@ -79,7 +83,7 @@
         str += `<input type='hidden' name='fileNames' value='${uuid}_${fileName}'>`
       }
 
-      actionForm.innerHTML += str
+      uploadHidden.innerHTML += str
 
       actionForm.submit()
 
@@ -149,12 +153,7 @@
 
 
       axios.delete(`http://localhost:8080/removeFile/${uuid}_${fileName}`)
-
-
       liObj.remove()
-
-
-
     }
 
   // window.onbeforeunload = function (e) {
