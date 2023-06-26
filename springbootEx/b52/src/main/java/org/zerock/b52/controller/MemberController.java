@@ -32,4 +32,10 @@ public class MemberController {
         log.info("-----signin--------------");
     }
 
+    @PreAuthorize("permitAll")
+    @GetMapping("/modify")
+    public void modify(){
+        log.info("-------modify------------");
+    }
+
 }
