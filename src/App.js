@@ -1,10 +1,5 @@
-import Counter from "./components/Counter";
-import Counter2 from "./components/Counter2";
-import Todo from "./components/todo";
-import TodoInput from "./components/todo/TodoInput";
-import ZCounter from "./components/zcounter";
-import SampleLayout from "./layout/SampleLayout";
-import TemplatePage from "./layout/TemplatePage";
+import Kiosk3 from "./components/kiosk3";
+import Todo1 from "./components/todo1";
 
 
 function App() {
@@ -16,25 +11,9 @@ function App() {
 
   return (
     <div>
-      <Todo/>
+      <Todo1></Todo1>
     </div>
 
-    // <div>
-    //   <TemplatePage>
-    //     <div className="text-6xl text-emerald-700">Logo Header</div>
-    //     <ZCounter />
-    //     <div className="text-6xl text-emerald-700">Logo Footer</div>
-    //   </TemplatePage>
-    // </div>
-
-    // <div>
-    //   <ZCounter/>
-    // </div>
-
-    // <div className="App flex">
-    //   <Counter></Counter>
-    //   <Counter2></Counter2>
-    // </div>
   );
 }
 
