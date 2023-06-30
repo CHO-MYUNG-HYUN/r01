@@ -9,6 +9,18 @@ const Todo1 = () => {
   const [todos, setTodos] = useState([])
   const [current, setCurrent] = useState(null)
 
+  useEffect(() => {
+    const jsonStr = localStorage.getItem("todos")
+    if(jsonStr){
+      setTodos(JSON.parse(jsonStr))
+    }
+  }, [])
+
+  const sallAll = () => {
+    const str = JSON.stringify(todos)
+    localStorage.setItem("todos", str)
+  }
+
   const addTodo = (todoObj) => {
     console.log(uuid(), todoObj)
     setTodos([...todos, { tno: uuid(), ...todoObj }])
@@ -39,6 +51,7 @@ const Todo1 = () => {
         <Todo1Input addTodo={addTodo}></Todo1Input>
         <Todo1Read current={current} remove={remove} modify={modify}></Todo1Read>
         <Todo1List requestView={requestView} todos={todos}></Todo1List>
+        <div onClick={sallAll} className="text-center text-2xl bg-slate-300">Save ALL</div>
       </div>
     </>
   );
