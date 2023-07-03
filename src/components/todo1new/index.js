@@ -17,7 +17,7 @@ const Todo1New = () => {
 
   const requestView = (tno) => {
     console.log(tno)
-    const target = todos.filter(t => t.tno === tno)
+    const target = todos.filter(t => t.tno === tno)[0]
     console.log(target)
     setCurrent({...target})
   }

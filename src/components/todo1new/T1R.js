@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const T1R = ( {current}) => {
+const T1R = ({ current }) => {
 
   const [todo, setTodo] = useState(current)
 
@@ -8,23 +8,22 @@ const T1R = ( {current}) => {
     setTodo(current)
   }, [current])
 
-  if(!todo){
+  if (!todo) {
 
     return <div>is NULL !</div>
   }
 
 
-  return ( 
+  return (
     <div>
-    <div className="text-2xl">
-      Todo Read
+      <div className="text-2xl">
+        Todo Read
+      </div>
+      <div>
+        {todo.tno}
+      </div>
     </div>
-    {todo.tno}
-    <ul>
-      
-    </ul>
-    </div>
-   );
+  );
 }
- 
+
 export default T1R;
