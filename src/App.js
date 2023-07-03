@@ -1,6 +1,7 @@
 import Kiosk3 from "./components/kiosk3";
 import Todo1 from "./components/todo1";
 import Todo1New from "./components/todo1new";
+import Todo2 from "./components/todo2";
 
 
 function App() {
@@ -12,8 +13,7 @@ function App() {
 
   return (
     <div>
-      {/* <Todo1></Todo1> */}
-      <Todo1New></Todo1New>
+      <Todo2></Todo2>
     </div>
 
   );
